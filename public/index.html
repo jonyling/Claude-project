@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jony Ling — AI/ML Consultant &amp; Trainer · Singapore</title>
+  <meta name="description" content="Jony Ling helps SMEs in Singapore unlock real value from AI — machine learning, data analytics, and AI strategy without a data science team." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500;600&display=swap');
+
+    /* ── Tokens ──────────────────────────────────────── */
+    :root {
+      --ground:   #FAFAF7;
+      --surface:  #F0F4F1;
+      --text:     #151B28;
+      --muted:    #6B7280;
+      --accent:   #0E7C7B;
+      --amber:    #D4691E;
+      --border:   #E2E6E3;
+      --f-dis:    'Syne', sans-serif;
+      --f-bod:    'Inter', sans-serif;
+      --nav-h:    64px;
+      --px:       clamp(20px, 5vw, 60px);
+      --py:       clamp(80px, 10vw, 140px);
+      --w:        min(1100px, 92vw);
+      --r:        8px;
+      --ease:     cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── Reset ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--f-bod);
+      background: var(--ground);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--px);
+      z-index: 100;
+      transition: background .3s var(--ease), box-shadow .3s var(--ease);
+    }
+    .nav.on {
+      background: rgba(250,250,247,.94);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-brand {
+      font-family: var(--f-dis);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -.03em;
+    }
+    .nav-brand em { font-style: normal; color: var(--accent); }
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+    .nav-list a {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-list a:hover,
+    .nav-list a:focus-visible { color: var(--accent); }
+    .nav-list a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+
+    /* ── Hero ────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: var(--nav-h) var(--px) 0;
+    }
+    .hero-inner {
+      max-width: var(--w);
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      gap: 64px;
+      align-items: center;
+      padding: 60px 0;
+    }
+    .hero-eye {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero-eye::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    h1.hero-name {
+      font-family: var(--f-dis);
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: .92;
+      letter-spacing: -.05em;
+      margin-bottom: 28px;
+    }
+    .hero-tag {
+      font-size: clamp(.95rem, 1.8vw, 1.1rem);
+      color: var(--muted);
+      max-width: 44ch;
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+    .hero-tag strong { color: var(--text); font-weight: 600; }
+    .ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--r);
+      font-family: var(--f-bod);
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s, color .2s;
+    }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .btn-fill {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-fill:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,124,123,.28); }
+    .btn-line {
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+    .btn-line:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-vis {
+      height: clamp(280px, 44vh, 460px);
+    }
+    #cv { width: 100%; height: 100%; display: block; }
+
+    /* ── Shared section ──────────────────────────────── */
+    .sec {
+      padding: var(--py) var(--px);
+    }
+    .sec:nth-of-type(even) { background: var(--surface); }
+    .wrap { max-width: var(--w); margin: 0 auto; }
+    .eye {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .sh {
+      font-family: var(--f-dis);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.04em;
+      margin-bottom: 52px;
+    }
+
+    /* ── About ───────────────────────────────────────── */
+    .about-g {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .about-body p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.1em;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-body strong { color: var(--text); font-weight: 600; }
+    .pull {
+      border-left: 3px solid var(--amber);
+      padding-left: 28px;
+    }
+    .pull blockquote {
+      font-family: var(--f-dis);
+      font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -.025em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .pull cite {
+      display: block;
+      font-style: normal;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Skills ──────────────────────────────────────── */
+    .sk-g {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .sk {
+      background: var(--ground);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px 24px;
+      transition: border-color .2s, transform .22s var(--ease);
+    }
+    .sk:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .sk-ico {
+      width: 32px;
+      height: 32px;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .sk-n {
+      font-family: var(--f-dis);
+      font-size: .93rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .sk-d {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.62;
+    }
+
+    /* ── Projects ────────────────────────────────────── */
+    .pr-g {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .pr {
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .2s, box-shadow .22s var(--ease);
+    }
+    .pr:hover { border-color: var(--accent); box-shadow: 0 10px 36px rgba(14,124,123,.09); }
+    .pr-tag {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+    .pr-t {
+      font-family: var(--f-dis);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -.025em;
+      margin-bottom: 12px;
+    }
+    .pr-d {
+      font-size: .875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+    .pr-lnk {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap .2s var(--ease);
+    }
+    .pr-lnk:hover { gap: 12px; }
+
+    /* ── Repos ───────────────────────────────────────── */
+    .repos-sub {
+      font-size: .92rem;
+      color: var(--muted);
+      margin-top: -36px;
+      margin-bottom: 40px;
+    }
+    .re-g {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .re {
+      background: var(--ground);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color .2s, transform .2s var(--ease);
+    }
+    .re:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .re-n {
+      font-family: var(--f-dis);
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+      word-break: break-word;
+    }
+    .re-d { font-size: .78rem; color: var(--muted); line-height: 1.55; flex: 1; }
+    .re-m { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+    .re-lang { display: flex; align-items: center; gap: 5px; font-size: .72rem; color: var(--muted); }
+    .ldot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .re-stars { font-size: .72rem; color: var(--muted); }
+    .re-msg {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-size: .95rem;
+      grid-column: 1/-1;
+    }
+    .re-msg a { color: var(--accent); }
+
+    /* ── Contact ─────────────────────────────────────── */
+    #contact { text-align: center; }
+    #contact .sh { margin-bottom: 14px; }
+    .contact-sub {
+      font-size: .98rem;
+      color: var(--muted);
+      max-width: 46ch;
+      margin: 0 auto 40px;
+      line-height: 1.78;
+    }
+    .contact-ctas { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      padding: 28px var(--px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .77rem;
+      color: var(--muted);
+    }
+
+    /* ── Reveal ──────────────────────────────────────── */
+    .rv {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .55s var(--ease), transform .55s var(--ease);
+    }
+    .rv.in { opacity: 1; transform: none; }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 40px 0 60px; }
+      .hero-vis { height: 220px; }
+      .about-g { grid-template-columns: 1fr; gap: 40px; }
+      .sk-g { grid-template-columns: repeat(2, 1fr); }
+      .re-g { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .nav-list { display: none; }
+      .sk-g, .pr-g, .re-g { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 6px; text-align: center; }
+    }
+    @media (max-width: 375px) {
+      .ctas, .contact-ctas { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .rv { opacity: 1; transform: none; }
+      .nav, .btn, .sk, .pr, .re, .pr-lnk { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Primary navigation">
+  <a class="nav-brand" href="#hero" aria-label="Jony Ling – home">Jony<em>.</em></a>
+  <ul class="nav-list" role="list">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#repos">Repos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eye" aria-hidden="true">AI · ML · Data Analytics</div>
+      <h1 class="hero-name">Jony<br>Ling</h1>
+      <p class="hero-tag">
+        Helping <strong>SMEs in Singapore and beyond</strong> find the AI investments worth making — and put them to work without needing a data science team.
+      </p>
+      <div class="ctas">
+        <a class="btn btn-fill" href="mailto:jonyling@hotmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email me
+        </a>
+        <a class="btn btn-line" href="https://github.com/jonyling" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-line" href="https://linkedin.com/in/jonyling" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="hero-vis" aria-hidden="true">
+      <canvas id="cv"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ─────────────────────────────────────────── -->
+<section id="about" class="sec">
+  <div class="wrap">
+    <div class="eye">About</div>
+    <h2 class="sh">From practitioner<br>to enabler.</h2>
+    <div class="about-g">
+      <div class="about-body rv">
+        <p>
+          I'm <strong>Jony Ling</strong>, based in Singapore — a mid-career professional who made a deliberate pivot into AI, machine learning, and data analytics. I arrived here through coursework, hands-on capstone projects, and Singapore's AI Apprenticeship Programme (AIAP Batch 22): one of the more rigorous government-run technical assessments in the region.
+        </p>
+        <p>
+          My goal isn't just to apply these tools myself. It's to help <strong>small and medium-sized businesses</strong> understand which AI investments are worth making — and how to implement them without needing an in-house data science team on the payroll.
+        </p>
+        <p>
+          I've worked on problems across financial markets, Singapore's job market, and global AI adoption trends. I can read the research, write the code, and explain the results to someone who has never heard of gradient descent.
+        </p>
+      </div>
+      <div class="pull rv" style="transition-delay:.12s">
+        <blockquote>
+          "Most SMEs don't need a data scientist. They need someone who can show them which three decisions AI can actually help with."
+        </blockquote>
+        <cite>— Jony Ling, Singapore</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ────────────────────────────────────────── -->
+<section id="skills" class="sec">
+  <div class="wrap">
+    <div class="eye">Skills</div>
+    <h2 class="sh">What I bring.</h2>
+    <div class="sk-g">
+
+      <div class="sk rv">
+        <svg class="sk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+        <div class="sk-n">Machine Learning</div>
+        <div class="sk-d">Supervised and unsupervised models using scikit-learn and Python. Classification, regression, clustering — applied to real datasets where noise is the rule.</div>
+      </div>
+
+      <div class="sk rv" style="transition-delay:.06s">
+        <svg class="sk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        <div class="sk-n">Data Analytics</div>
+        <div class="sk-d">Exploratory analysis, data wrangling, and visualisation in Pandas, Matplotlib, and Seaborn. Turning raw tables into decisions a business can act on.</div>
+      </div>
+
+      <div class="sk rv" style="transition-delay:.12s">
+        <svg class="sk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <div class="sk-n">AI Strategy for SMEs</div>
+        <div class="sk-d">Identifying high-value AI use cases for businesses without a data team. Scoping what's feasible, what's worth it, and what the rollout looks like.</div>
+      </div>
+
+      <div class="sk rv" style="transition-delay:.18s">
+        <svg class="sk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        <div class="sk-n">Financial Data Modelling</div>
+        <div class="sk-d">Time-series forecasting and price prediction on financial instruments, built on multi-year historical data with rigorous train/test validation.</div>
+      </div>
+
+      <div class="sk rv" style="transition-delay:.24s">
+        <svg class="sk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+        <div class="sk-n">Python &amp; Jupyter</div>
+        <div class="sk-d">Primary working environment for all data work — reproducible analysis pipelines, automation scripts, and interactive Streamlit apps for non-technical stakeholders.</div>
+      </div>
+
+      <div class="sk rv" style="transition-delay:.30s">
+        <svg class="sk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <div class="sk-n">Training &amp; Facilitation</div>
+        <div class="sk-d">Explaining complex technical concepts to non-technical audiences — built across years of cross-functional work and now the core of my consulting practice.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ──────────────────────────────────────── -->
+<section id="projects" class="sec">
+  <div class="wrap">
+    <div class="eye">Projects</div>
+    <h2 class="sh">Selected work.</h2>
+    <div class="pr-g">
+
+      <div class="pr rv">
+        <div class="pr-tag">Machine Learning · Finance</div>
+        <div class="pr-t">ETH-USD Price Prediction</div>
+        <p class="pr-d">A time-series ML model trained on seven years of Ethereum price data. Explores feature engineering, model selection, and out-of-sample validation on a real-world financial signal — where noise is the rule, not the exception.</p>
+        <a class="pr-lnk" href="https://github.com/jonyling/eth-usd-price-prediction" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="pr rv" style="transition-delay:.08s">
+        <div class="pr-tag">Data Pipeline · Policy</div>
+        <div class="pr-t">Global AI Adoption Pipeline</div>
+        <p class="pr-d">An end-to-end data pipeline analysing AI adoption rates and workforce impact across countries and industries. Built to answer a question that matters: who benefits, and who gets left behind?</p>
+        <a class="pr-lnk" href="https://github.com/jonyling/ai-adoption-pipeline" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="pr rv" style="transition-delay:.16s">
+        <div class="pr-tag">Analytics · Labour Markets</div>
+        <div class="pr-t">Singapore Job Market Analysis</div>
+        <p class="pr-d">NTU course capstone examining Singapore's tech job market through data — skills demand, salary distributions, and the gap between what employers advertise and what applicants offer.</p>
+        <a class="pr-lnk" href="https://github.com/jonyling/SGJobMarket" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="pr rv" style="transition-delay:.24s">
+        <div class="pr-tag">AI · AIAP Capstone</div>
+        <div class="pr-t">AIAP Batch-22 Technical Assessment</div>
+        <p class="pr-d">Technical submission for Singapore's AI Apprenticeship Programme — a government-backed assessment covering end-to-end ML pipeline design, model evaluation, and production-readiness considerations.</p>
+        <a class="pr-lnk" href="https://github.com/jonyling/aiap22-Ling-Kheng-Aik-Jony-149A" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Repos ─────────────────────────────────────────── -->
+<section id="repos" class="sec">
+  <div class="wrap">
+    <div class="eye">GitHub</div>
+    <h2 class="sh">Public repositories.</h2>
+    <p class="repos-sub">Recent work, live from the GitHub API.</p>
+    <div class="re-g" id="re-g" role="list">
+      <p class="re-msg">Loading…</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ───────────────────────────────────────── -->
+<section id="contact" class="sec">
+  <div class="wrap">
+    <div class="eye">Contact</div>
+    <h2 class="sh">Let's talk.</h2>
+    <p class="contact-sub">Interested in AI training for your team, a consulting engagement, or a plain conversation about what AI can actually do for your business? I'd like to hear from you.</p>
+    <div class="contact-ctas">
+      <a class="btn btn-fill" href="mailto:jonyling@hotmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        jonyling@hotmail.com
+      </a>
+      <a class="btn btn-line" href="https://github.com/jonyling" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="btn btn-line" href="https://linkedin.com/in/jonyling" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Jony Ling · Singapore</span>
+  <span>Plain HTML/CSS + vanilla JS</span>
+</footer>
+
+<script>
+// ── Nav scroll ─────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('on', window.scrollY > 40);
+}, { passive: true });
+
+// ── Hero canvas: slow-drifting data-node network ───────
+(function () {
+  const canvas = document.getElementById('cv');
+  const ctx = canvas.getContext('2d');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, nodes;
+  const N = 26, DIST = 130;
+  const TEAL = [14, 124, 123], AMBER = [212, 105, 30];
+
+  function mkNode() {
+    return {
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .36, vy: (Math.random() - .5) * .36,
+      r: Math.random() * 2.2 + 2,
+      c: Math.random() > .75 ? AMBER : TEAL,
+    };
+  }
+
+  function resize() {
+    const p = canvas.parentElement;
+    W = canvas.width  = p.clientWidth;
+    H = canvas.height = p.clientHeight;
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < DIST) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(14,124,123,${(1 - d / DIST) * .17})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${n.c[0]},${n.c[1]},${n.c[2]},.68)`;
+      ctx.fill();
+    });
+  }
+
+  function tick() {
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+    frame();
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', () => { resize(); if (reduced) frame(); }, { passive: true });
+  resize();
+  nodes = Array.from({ length: N }, mkNode);
+  reduced ? frame() : tick();
+})();
+
+// ── Scroll reveal ──────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// ── GitHub repos ───────────────────────────────────────
+const LC = {
+  Python: '#3572A5', 'Jupyter Notebook': '#DA5B0B',
+  JavaScript: '#F1E05A', TypeScript: '#3178C6',
+  HTML: '#E44B23', CSS: '#563D7C', Shell: '#89E051',
+};
+
+(async function loadRepos() {
+  const g = document.getElementById('re-g');
+  try {
+    const r = await fetch('https://api.github.com/users/jonyling/repos?sort=updated&per_page=12');
+    if (!r.ok) throw new Error(r.status);
+    const repos = await r.json();
+    if (!repos.length) { g.innerHTML = '<p class="re-msg">No public repositories yet.</p>'; return; }
+    g.innerHTML = repos.map(repo => {
+      const lc = repo.language ? (LC[repo.language] || '#6B7280') : null;
+      const lang = repo.language
+        ? `<span class="re-lang"><span class="ldot" style="background:${lc}"></span>${repo.language}</span>` : '';
+      const stars = repo.stargazers_count ? `<span class="re-stars">★ ${repo.stargazers_count}</span>` : '';
+      return `<a class="re" href="${repo.html_url}" target="_blank" rel="noopener noreferrer" role="listitem">
+        <div class="re-n">${repo.name}</div>
+        <div class="re-d">${repo.description || 'No description.'}</div>
+        <div class="re-m">${lang}${stars}</div>
+      </a>`;
+    }).join('');
+  } catch (e) {
+    console.error(e);
+    g.innerHTML = '<p class="re-msg">Repositories unavailable right now. <a href="https://github.com/jonyling" target="_blank" rel="noopener">View on GitHub →</a></p>';
+  }
+})();
+</script>
+</body>
+</html>
